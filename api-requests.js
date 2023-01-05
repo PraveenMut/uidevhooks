@@ -39,6 +39,11 @@ const Post = ({ postId }) => {
   });
 
   React.useEffect(() => {
+    setState({
+      ...state,
+      loading: true,
+    });
+
     const processResponse = async () => {
       try {
         const response = await fetchPost(postId);
@@ -88,7 +93,7 @@ const App = () => {
     if (i >= postIds.length - 1) {
       setEnd(true);
     }
-    setIndex(++i);
+    setIndex((i) => i + 1);
   };
 
   if (end) {
