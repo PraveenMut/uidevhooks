@@ -63,7 +63,7 @@ const Post = ({ postId }) => {
     return <div>Loading Post...</div>;
   }
 
-  if (error) {
+  if (state.error) {
     return (
       <div>
         <h2>An error has occured when fetching the post.</h2>
@@ -74,8 +74,8 @@ const Post = ({ postId }) => {
 
   return (
     <>
-      <h1>{response.title}</h1>
-      <p>{response.body}</p>
+      <h1>{state.response.title}</h1>
+      <p>{state.response.body}</p>
     </>
   );
 };
@@ -85,7 +85,7 @@ const App = () => {
   const [end, setEnd] = React.useState(false);
 
   const incrementIndex = (i) => {
-    if (i => postIds.length - 1) {
+    if (i >= postIds.length - 1) {
       setEnd(true);
     }
     setIndex(++i);
@@ -101,7 +101,7 @@ const App = () => {
   return (
     <div className="App">
       <>
-        <Post postId={index} />
+        <Post postId={postIds[index]} />
         <button onClick={() => incrementIndex(index)}>Next Post</button>
       </>
     </div>
